@@ -1,5 +1,3 @@
-// in this program we will study about some linked list functions
-
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -8,20 +6,18 @@ struct node
 {
     int info;
     struct node *next;
-}*start=NULL;//global pointer start and initialising it with NULL
+}*start=NULL;//global variable
 
 void insertend();//for inserting element at end
 void insertbeg();//for inserting element at begining
 void display();//for displaying all the elements of the list
-void deletenposition();//for deleting an element given by the user
+void delete_a_element();//for deleting an element given by the user
 void insertnposition();//for inserting element at n position
 int countelements();//for counting the no of elements in the list
 void deletefront();//for deleting a element from delete
 void deleteend();//for deleting a element from end
 int maxelement();//for finding max element in the list
 void createlist();//for creating a whole list at a time
-void swapelement();//for swaping two elements of the list
-void swapnodes();//for swapping two nodes of a list
 
 void main()
 {
@@ -34,12 +30,10 @@ void main()
     printf("\n 5. for display");
     printf("\n 6. for delete from front");
     printf("\n 7. for delete from end");
-    printf("\n 8. for deleting a element at n th position");
+    printf("\n 8. for deleting a particular element");
     printf("\n 9. for count elements");
     printf("\n 10. for max element in the list");
-    printf("\n 11. for swapping two elements");
-    printf("\n 12. for swapping two nodes");
-    printf("\n 13. for exit");
+    printf("\n 11. for exit");
     printf("\n enter your choice=");
     scanf("%d",&ch);
 
@@ -59,7 +53,7 @@ void main()
                 break;
         case 7: deleteend();
                 break;
-        case 8: deletenposition();
+        case 8: delete_a_element();
                 break;
         case 9: x=countelements();
                 printf("\n no. of elements in the list=%d\n",x);
@@ -67,14 +61,10 @@ void main()
         case 10: x=maxelement();
                 printf("\n %d is the max element in the list\n",x);
                 break;
-        case 11: swapelement();
-                break;
-        case 12: swapnodes();
-                break;
-        case 13: break;
+        case 11: break;
         default : printf("\n invalid choice\n");
     }
-    }while(ch<=12);
+    }while(ch<=10);
 
 }
 
@@ -147,7 +137,7 @@ void display()
     printf("\n");
 }
 
-void deletenposition()
+void delete_a_element()
 {
     struct node *t,*p;
     int info,c=0;
@@ -226,9 +216,8 @@ void insertnposition()
 
     if(pos==1)//checking if want to insert at the begining
     {
-            printf("\n running");
-            insertbeg();
-            return;
+        insertbeg();
+        return;
     }
     else
     {
@@ -337,62 +326,5 @@ void createlist()
     }
 }
 
-void swapelement()
-{
-    struct node *f,*l;
-    int i,temp,count,p1,p2;
 
-    count=countelements();
-    if(count<2)
-    {
-        printf("\n list is too short for swapping");
-        return;
-    }
-    printf("\n enter the position of first and second node respectively=");
-    scanf("%d %d",&p1,&p2);
-    if(p1<=count && p1>0 && p2<=count && p2>0)
-    {
-        f=start;
-        l=start;
-        for(i=1;i<p1;i++)
-            f=f->next;
-        for(i=1;i<p2;i++)
-            l=l->next;
-        temp=f->info;
-        f->info=l->info;
-        l->info=temp;
 
-        printf("\n Successfully swaped.\n");
-    }
-    else
-    {
-        printf("\n Sorry! no such position exits in the list.\n");
-    }
-
-}
-
-void swapnodes()
-{
-    /*struct node *t,*p,*t1,*p1;
-    int pos1,pos2,temp1,temp2,i;
-    printf("\n enter the first and second position=");
-    scanf("%d %d",&pos1,&pos2);
-    t=start;
-    p=start;
-    for(i=1;i<pos1;i++)
-    {
-        t1=t;
-        t=t->next;
-    }
-    for(i=1;i<pos2;i++)
-    {
-        p1=p;
-        p=p->next;
-    }
-    temp1=t->next;
-    t1->next=p;
-    temp2=p->next;
-    p->next=t->next;
-    p1->next=temp1;
-    t->next=temp2;*/
-}
