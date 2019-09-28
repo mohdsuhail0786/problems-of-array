@@ -20,6 +20,8 @@ void deletefront();//for deleting a element from delete
 void deleteend();//for deleting a element from end
 int maxelement();//for finding max element in the list
 void createlist();//for creating a whole list at a time
+void swapelement();//for swaping two elements of the list
+void swapnodes();//for swapping two nodes of a list
 
 void main()
 {
@@ -35,7 +37,9 @@ void main()
     printf("\n 8. for deleting a element at n th position");
     printf("\n 9. for count elements");
     printf("\n 10. for max element in the list");
-    printf("\n 11. for exit");
+    printf("\n 11. for swapping two elements");
+    printf("\n 12. for swapping two nodes");
+    printf("\n 13. for exit");
     printf("\n enter your choice=");
     scanf("%d",&ch);
 
@@ -63,10 +67,14 @@ void main()
         case 10: x=maxelement();
                 printf("\n %d is the max element in the list\n",x);
                 break;
-        case 11: break;
+        case 11: swapelement();
+                break;
+        case 12: swapnodes();
+                break;
+        case 13: break;
         default : printf("\n invalid choice\n");
     }
-    }while(ch<=10);
+    }while(ch<=12);
 
 }
 
@@ -327,4 +335,64 @@ void createlist()
     {
         insertend();
     }
+}
+
+void swapelement()
+{
+    struct node *f,*l;
+    int i,temp,count,p1,p2;
+
+    count=countelements();
+    if(count<2)
+    {
+        printf("\n list is too short for swapping");
+        return;
+    }
+    printf("\n enter the position of first and second node respectively=");
+    scanf("%d %d",&p1,&p2);
+    if(p1<=count && p1>0 && p2<=count && p2>0)
+    {
+        f=start;
+        l=start;
+        for(i=1;i<p1;i++)
+            f=f->next;
+        for(i=1;i<p2;i++)
+            l=l->next;
+        temp=f->info;
+        f->info=l->info;
+        l->info=temp;
+
+        printf("\n Successfully swaped.\n");
+    }
+    else
+    {
+        printf("\n Sorry! no such position exits in the list.\n");
+    }
+
+}
+
+void swapnodes()
+{
+    /*struct node *t,*p,*t1,*p1;
+    int pos1,pos2,temp1,temp2,i;
+    printf("\n enter the first and second position=");
+    scanf("%d %d",&pos1,&pos2);
+    t=start;
+    p=start;
+    for(i=1;i<pos1;i++)
+    {
+        t1=t;
+        t=t->next;
+    }
+    for(i=1;i<pos2;i++)
+    {
+        p1=p;
+        p=p->next;
+    }
+    temp1=t->next;
+    t1->next=p;
+    temp2=p->next;
+    p->next=t->next;
+    p1->next=temp1;
+    t->next=temp2;*/
 }
